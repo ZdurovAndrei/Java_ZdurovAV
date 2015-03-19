@@ -13,12 +13,20 @@ import java.io.IOException;
  */
 public class MainClass {
     public static void main(String[] args) throws IOException {
+        //LogFileRecord Attributes = new LogFileRecord();
         try {
             if ((Integer.parseInt(args[1]) > 0) && (Integer.parseInt(args[2]) > 0)){
                 String fileName = args[0];
                 int numberOfLines = Integer.parseInt(args[1]);
                 int amountOfRows = Integer.parseInt(args[2]);
-                LogFileReader.readFile(fileName, numberOfLines, amountOfRows);
+                LogFileRecord log = new LogFileRecord();
+                LogFileReader.readFile(fileName, numberOfLines, amountOfRows, log);
+                for (int i = 0; i < Integer.parseInt(args[2]); i++)
+                {
+                    System.out.println(log.bytes[i]);
+                }
+
+                System.out.println();
             }
         }
         catch (IOException e) {

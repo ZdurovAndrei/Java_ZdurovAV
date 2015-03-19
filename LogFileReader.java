@@ -5,16 +5,18 @@ import java.io.IOException;
 
 public class LogFileReader {
 
-    public static void readFile(String fileName, int numberOfLines, int amountOfRows) throws  IOException {
+    public static void readFile(String fileName, int numberOfLines, int amountOfRows, LogFileRecord log) throws  IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         try {
             String line;
             int i = 0;
+            int g = 0;
             while (((line = reader.readLine()) != null) && i <= numberOfLines + amountOfRows ) {
                 i++;
                 if (i >= numberOfLines && i < numberOfLines + amountOfRows) {
                     //System.out.println( line );
-                    LogFileParser.parseFile(line);
+                    LogLineParser.parseLine(line, g, log);
+                    g++;
                 }
             }
         }
