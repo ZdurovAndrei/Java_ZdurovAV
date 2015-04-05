@@ -1,23 +1,24 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LogFileReader {
 
-    public static void readFile(String fileName, int numberOfLines, int amountOfRows, LogFileRecord log) throws  IOException {
+    public static List<LogFileRecord> readFile(String fileName, int numberOfLines, int amountOfRows) throws  IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        List<LogFileRecord> list = new ArrayList<LogFileRecord>();
         try {
             String line;
             int i = 0;
-            int g = 0;
+
             while (((line = reader.readLine()) != null) && i <= numberOfLines + amountOfRows ) {
-                i++;
                 if (i >= numberOfLines && i < numberOfLines + amountOfRows) {
-                    //System.out.println( line );
-                    LogLineParser.parseLine(line, g, log);
-                    g++;
+                    list.add(LogLineParser.parseLine(line));
                 }
+                i++;
             }
         }
         catch (IOException e) {
@@ -25,6 +26,7 @@ public class LogFileReader {
         }
         finally {
             reader.close();
+            return list;
         }
     }
 }
