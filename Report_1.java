@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by Андрей on 09.04.2015.
  */
 
-public class Report_1 implements ISpecified_period_of_time<List<Map.Entry<String, Integer>>>{
+public class Report_1 implements IReport<List<Map.Entry<String, Integer>>>{
     public List<Map.Entry<String, Integer>> process (ArrayList<LogFileRecord> list, Date fromDate, Date toDate)
     {
         Map<String, Integer> map = new HashMap<String, Integer>();

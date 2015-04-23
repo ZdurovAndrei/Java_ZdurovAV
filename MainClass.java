@@ -30,23 +30,23 @@ public class MainClass {
                 {
                     case 1 :
                     {
-                        ISpecified_period_of_time <List<Map.Entry<String, Integer>>> rep1 = new Report_1();
+                        IReport <List<Map.Entry<String, Integer>>> rep1 = new Report_1();
                         System.out.println(rep1.process(list, fromDate, toDate));
                         break;
                     }
                     case 2 :
                     {
-                        ISpecified_period_of_time <Integer> rep2 = new Report_2();
+                        IReport <Integer> rep2 = new Report_2();
                         System.out.println(rep2.process(list, fromDate, toDate));
                         break;
                     }
-//                    case 3 :
-//                    {
-//                        ISpecified_period_of_time <LogFileRecord> rep3 = new Report_3();
-//                        System.out.println(rep3.process(list, fromDate, toDate).bytes + " " + rep3.process(list, fromDate, toDate).reply);
-//                        break;
-//                    }
-//                    default:{System.out.print("Error" );break;}
+                    case 3 :
+                    {
+                        IReport <LogFileRecord> rep3 = new Report_3();
+                        System.out.println(rep3.process(list, fromDate, toDate).path/* + " " + rep3.process(list, fromDate, toDate).protocol*/);
+                        break;
+                    }
+                    default:{System.out.print("Error" );break;}
                 }
 
                 System.out.println();

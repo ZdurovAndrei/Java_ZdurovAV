@@ -6,9 +6,9 @@ import java.util.Date;
 class LogFileRecord {
     String host;
     Date timestamp;
-    String method; //enum
+    String method;
     String path;
-    String protocol; //enum
+    String protocol;
     Integer reply;
     Integer bytes;
 }
