@@ -3,9 +3,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by Здуров Андрей on 19.02.2015.
- */
 public class MainClass {
     public static void main(String[] args) throws IOException,ParseException {
         try {
@@ -16,40 +13,10 @@ public class MainClass {
                 Date fromDate = new SimpleDateFormat("dd/MMM/y:HH:mm:ssZ", Locale.US).parse(args[3]);
                 Date toDate = new SimpleDateFormat("dd/MMM/y:HH:mm:ssZ", Locale.US).parse(args[4]);
 
-                ArrayList<LogFileRecord> list = new ArrayList<LogFileRecord>(LogFileReader.readFile(fileName, numberOfLines, amountOfRows));
-
-                Map time = new HashMap <String, Integer>();
-                System.out.print("Report "+ args[5] +"\n");
-
-//                for (LogFileRecord note: list) {
-//                    String str = "Host: " + note.host + ", TimeStamp: " + note.timestamp + ", Method: " + note.method + ", Way: " + note.path + ", Protocol: " + note.protocol + ", Reply: " + note.reply + ", Bytes: " + note.bytes;
-//                    System.out.println(str);
-//                }
-
-                switch(Integer.parseInt(args[5]))
-                {
-                    case 1 :
-                    {
-                        IReport <List<Map.Entry<String, Integer>>> rep1 = new Report_1();
-                        System.out.println(rep1.process(list, fromDate, toDate));
-                        break;
-                    }
-                    case 2 :
-                    {
-                        IReport <Integer> rep2 = new Report_2();
-                        System.out.println(rep2.process(list, fromDate, toDate));
-                        break;
-                    }
-                    case 3 :
-                    {
-                        IReport <LogFileRecord> rep3 = new Report_3();
-                        System.out.println(rep3.process(list, fromDate, toDate).path/* + " " + rep3.process(list, fromDate, toDate).protocol*/);
-                        break;
-                    }
-                    default:{System.out.print("Error" );break;}
-                }
-
-                System.out.println();
+                LogFileReader logReader = new LogFileReader();
+                List<LogFileRecord> list = logReader.readFile(fileName, numberOfLines, amountOfRows);
+                AnalysisReport reportAnalize = new AnalysisReport();
+                reportAnalize.analize(list, Integer.parseInt(args[5]), fromDate, toDate);
             }
         }
         catch (IOException e) {

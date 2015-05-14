@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LogFileReader {
-
-    public static List<LogFileRecord> readFile(String fileName, int numberOfLines, int amountOfRows) throws  IOException {
+public class LogFileReader implements ILogFileReader{
+    public List<LogFileRecord> readFile(String fileName, int numberOfLines, int amountOfRows) throws  IOException {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         List<LogFileRecord> list = new ArrayList<LogFileRecord>();
         try {
             String line;
             int i = 0;
 
+            LogLineParser logParser = new LogLineParser();
             while (((line = reader.readLine()) != null) && i <= numberOfLines + amountOfRows ) {
                 if (i >= numberOfLines && i < numberOfLines + amountOfRows) {
-                    list.add(LogLineParser.parseLine(line));
+                    list.add(logParser.parseLine(line));
                 }
                 i++;
             }

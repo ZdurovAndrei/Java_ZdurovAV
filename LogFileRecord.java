@@ -1,14 +1,12 @@
 import java.util.Date;
 
-/**
- * Created by Андрей on 05.03.2015.
- */
-class LogFileRecord {
-    String host;
-    Date timestamp;
-    String method;
-    String path;
-    String protocol;
-    Integer reply;
-    Integer bytes;
+
+public class LogFileRecord {
+    public String host;
+    public Date timestamp;
+    public String method;
+    public String path;
+    public String protocol;
+    public Integer reply;
+    public Integer bytes;
 }

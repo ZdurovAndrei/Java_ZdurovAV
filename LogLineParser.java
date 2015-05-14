@@ -4,9 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class LogLineParser {
+public class LogLineParser implements ILogLineParser{
 
-    public static LogFileRecord parseLine(String line) throws IOException, ParseException {
+    public LogFileRecord parseLine(String line) throws IOException, ParseException {
         LogFileRecord note = new LogFileRecord();
 
         String[] buffer1 = line.split(" - - ");
