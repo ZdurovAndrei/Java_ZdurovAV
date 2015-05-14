@@ -9,8 +9,8 @@ import java.util.Map;
  * Created by Андрей on 09.04.2015.
  */
 
-public class Report_1 implements IReport<List<Map.Entry<String, Integer>>, Param> {
-    public List<Map.Entry<String, Integer>> process(Param params) {
+public class Report_1 implements IReport<List<Map.Entry<String, Integer>>, ReportParameters> {
+    public List<Map.Entry<String, Integer>> process(ReportParameters params) {
         {
             Map<String, Integer> map = new HashMap<String, Integer>();
             for (LogFileRecord note : params.list) {

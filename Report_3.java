@@ -1,6 +1,6 @@
 
-public class Report_3 implements IReport <String, Param>  {
-    public String process(Param a)
+public class Report_3 implements IReport <String, ReportParameters>  {
+    public String process(ReportParameters a)
     {
         LogFileRecord report = new LogFileRecord();
         int max=0;

@@ -15,8 +15,16 @@ public class MainClass {
 
                 LogFileReader logReader = new LogFileReader();
                 List<LogFileRecord> list = logReader.readFile(fileName, numberOfLines, amountOfRows);
-                AnalysisReport reportAnalize = new AnalysisReport();
-                reportAnalize.analize(list, Integer.parseInt(args[5]), fromDate, toDate);
+                ReportFactory reportFactory = new ReportFactory();
+
+                int reportIndex = Integer.parseInt(args[5]) - 1;
+                IReport report = reportFactory.getReportByIndex(reportIndex);
+
+                ReportParameters reportParameters = new ReportParameters(list, fromDate, toDate);
+                String reportText = report.process(reportParameters).toString();
+
+                System.out.print("Report "+ (reportIndex + 1) +"\n");
+                System.out.print(reportText);
             }
         }
         catch (IOException e) {
